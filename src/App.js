@@ -13,6 +13,13 @@ function App(){
   const [isRed, setRed] = useState(false)
   const [count,setCount] = useState(0)
 
+  const [users,setUsers] = useState([
+    {name:'Andres',message:'Mensaje Andres'},
+    {name:'Leo',message:'Mensaje Leo'},
+    {name:'Patty',message:'Mensaje Patty'},
+    {name:'Balto',message:'Mensaje Balto'},
+    
+  ])
   const increment = () =>{
     //Modifico el valor de la variable
     setCount(count + 1)
@@ -25,6 +32,7 @@ function App(){
   }
   return(
     <div className={isRed ? 'uno' : 'dos'}>
+      {/* 
       <Tweet name="One" message="Mensaje 1"/>
       <Tweet name="Two"  message="Mensaje 2"/>
       <Tweet name="Three"  message="Mensaje 3"/>
@@ -33,6 +41,10 @@ function App(){
       <h1>{count}</h1>
       <button onClick={increment}>Increment</button>
       <button onClick={changeColor}>Color</button>
+      */}
+      { users.map(user =>(
+        <Tweet name={user.name} message={user.message}/>
+      )) }
     </div>
   );
 }
