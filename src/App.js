@@ -14,10 +14,17 @@ function App(){
   const [count,setCount] = useState(0)
 
   const increment = () =>{
+    //Modifico el valor de la variable
     setCount(count + 1)
   }
+
+  const changeColor = () =>{
+    console.log('Change color',isRed);
+    const color = isRed;
+    setRed(!color);  
+  }
   return(
-    <div>
+    <div className={isRed ? 'uno' : 'dos'}>
       <Tweet name="One" message="Mensaje 1"/>
       <Tweet name="Two"  message="Mensaje 2"/>
       <Tweet name="Three"  message="Mensaje 3"/>
@@ -25,6 +32,7 @@ function App(){
 
       <h1>{count}</h1>
       <button onClick={increment}>Increment</button>
+      <button onClick={changeColor}>Color</button>
     </div>
   );
 }

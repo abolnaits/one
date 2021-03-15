@@ -18,6 +18,12 @@
   box-sizing: border-box;
   display: inline-block;
 }
+.uno{
+  background-color: aquamarine;
+}
+.dos{
+  background-color: yellowgreen;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
