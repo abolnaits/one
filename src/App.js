@@ -1,52 +1,34 @@
-import React from 'react';
-import {useState} from 'react';
-import Hello from './sayHello';
-import Tweet from './Tweet';
+import React, {useEffect,useState} from 'react';
 
-/*
-Funcion principal que muestra los Tweets
-Se pasan varias props desde aqui al componente Tweet
-*/
 function App(){
-  
-  //Defino el nombre de la variable y la funcion que modificara el valor
-  const [isRed, setRed] = useState(false)
-  const [count,setCount] = useState(0)
 
-  const [users,setUsers] = useState([
-    {name:'Andres',message:'Mensaje Andres'},
-    {name:'Leo',message:'Mensaje Leo'},
-    {name:'Patty',message:'Mensaje Patty'},
-    {name:'Balto',message:'Mensaje Balto'},
+    const app_id = 'fbf69388';
+    const app_key = '16c5027b9f08287d4f2b229a2c5c0f80';
+    const url = `https://api.edamam.com/search?q=chicken&app_id=${app_id}&app_key=${app_key}`;
     
-  ])
-  const increment = () =>{
-    //Modifico el valor de la variable
-    setCount(count + 1)
-  }
+    const [counter,setCounter] = useState(0);
 
-  const changeColor = () =>{
-    console.log('Change color',isRed);
-    const color = isRed;
-    setRed(!color);  
-  }
-  return(
-    <div className={isRed ? 'uno' : 'dos'}>
-      {/* 
-      <Tweet name="One" message="Mensaje 1"/>
-      <Tweet name="Two"  message="Mensaje 2"/>
-      <Tweet name="Three"  message="Mensaje 3"/>
-      <Tweet name="Four"  message="Mensaje 4"/>
+    //Funcion que se ejecuta cuando el estado de la app cambia
+    useEffect(()=>{
+        console.log('Effect has run');
+        get_recipes();
+    },[])
 
-      <h1>{count}</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={changeColor}>Color</button>
-      */}
-      { users.map(user =>(
-        <Tweet name={user.name} message={user.message}/>
-      )) }
-    </div>
-  );
+    const get_recipes = async() =>{
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log('Data ==>',data);
+    }
+    return(
+        <div className="app">
+            <h1>App Recetas</h1>
+            <form className="search_form">
+                <label>Buscar:</label>
+                <input type="text" className="search_bar"/>
+                <button type="submit" onClick={()=>setCounter(counter+1)} className="search_btn">{counter}</button>
+            </form>
+        </div>
+    )
 }
 
 export default App;
