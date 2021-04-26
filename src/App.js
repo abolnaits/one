@@ -34,10 +34,13 @@ const App = () => {
         });
     },[query]);
 
+    //Evento al hacer submit del form
     const getSearch = (e)=>{
         console.log('Search =>',e);
         e.preventDefault();
+        //Actualizo el valor del estado search
         setQuery(search);
+        //Reset estado search
         setSearch('');
     }
 
